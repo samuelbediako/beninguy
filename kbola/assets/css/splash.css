@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: red;
+  background: white;
   height: 100vh;
   display: flex;
   align-items: center;
@@ -17,7 +17,7 @@ body {
 }
 
 .splash-card {
-  background: white;
+  background: red;
   padding: 2rem 3rem;
   border-radius: 1rem;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
