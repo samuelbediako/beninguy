@@ -99,39 +99,48 @@ document.addEventListener('DOMContentLoaded', () => {
   scannerButton.style.display = 'inline-block';
   formSection.style.display = 'none';
 
+  // Extracted handler for QR scan success
+  function handleQrScanSuccess(qrCodeMessage, html5Qrcode, form, qrReader, scannerButton, formSection) {
+    try {
+      const data = JSON.parse(qrCodeMessage);
+      form.fullName.value = data.fullName;
+      form.dob.value = data.dob;
+      form.passport.value = data.passport;
+      form.email.value = data.email;
+      ['fullName', 'dob', 'passport', 'email'].forEach(field => {
+        form[field].readOnly = true;
+      });
+      html5Qrcode.stop().then(() => {
+        qrReader.innerHTML = '';
+        scannerButton.textContent = 'Scan Passport';
+        scanning = false;
+        formSection.style.display = 'block';
+      });
+    } catch (e) {
+      alert("Invalid QR format. Please fill the form manually.");
+      html5Qrcode.stop();
+      qrReader.innerHTML = '';
+      formSection.style.display = 'block';
+      scanning = false;
+    }
+  }
+  
+  // Extracted handler for QR scan error
+  function handleQrScanError(error) {
+    console.warn(`QR Scan Error: ${error}`);
+  }
+  
   scannerButton.addEventListener('click', () => {
     if (!scanning) {
       html5Qrcode = new Html5Qrcode("qr-reader");
       Html5Qrcode.getCameras().then(cameras => {
-        if (cameras && cameras.length) {
+        if (cameras?.length) {
+          const qrSuccess = qrCodeMessage => handleQrScanSuccess(qrCodeMessage, html5Qrcode, form, qrReader, scannerButton, formSection);
           html5Qrcode.start(
             cameras[0].id,
             { fps: 10, qrbox: 250 },
-            qrCodeMessage => {
-              try {
-                const data = JSON.parse(qrCodeMessage);
-                form.fullName.value = data.fullName;
-                form.dob.value = data.dob;
-                form.passport.value = data.passport;
-                form.email.value = data.email;
-                ['fullName', 'dob', 'passport', 'email'].forEach(field => {
-                  form[field].readOnly = true;
-                });
-                html5Qrcode.stop();
-                qrReader.innerHTML = '';
-                formSection.style.display = 'block';
-                scanning = false;
-              } catch (e) {
-                alert("Invalid QR format. Please fill the form manually.");
-                html5Qrcode.stop();
-                qrReader.innerHTML = '';
-                formSection.style.display = 'block';
-                scanning = false;
-              }
-            },
-            error => {
-              console.warn(`QR Scan Error: ${error}`);
-            }
+            qrSuccess,
+            handleQrScanError
           );
           scanning = true;
           scannerButton.textContent = 'Stop Scanning';
