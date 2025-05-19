@@ -1,0 +1,156 @@
+
+* {
+  box-sizing: border-box;
+}
+
+body.qr-page {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: white;
+  margin: 0;
+  padding: 1rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.qr-header {
+  width: 100%;
+  max-width: 800px;
+  padding: 10px 20px;
+  border-bottom: 2px solid red;
+  text-align: center;
+}
+
+.qr-header h1 {
+  margin: 0;
+  font-weight: 700;
+}
+
+/* Main container */
+.qr-container {
+  width: 100%;
+  max-width: 800px;
+  background: white;
+  border: 2px solid red;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.9);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Form styles */
+form#registrationForm {
+  width: 100%;
+}
+
+/* The grid container for the form */
+#formSection form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Form group labels and inputs */
+#formSection label {
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+  display: block; 
+  width: 100%;
+}
+
+#formSection input,
+#formSection select {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  font-size: 1rem;
+  border: 2px solid black;
+  border-radius: 6px;
+  color: black;
+  background: #fff;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+#formSection input:focus,
+#formSection select:focus {
+  outline: none;
+  border-color: red;
+}
+
+/* Submit button */
+#formSection button[type="submit"] {
+  margin-top: 2rem;
+  background-color: red;
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  padding: 0.8rem 2rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  align-self: center;
+  width: 100%;
+  max-width: 300px;
+}
+
+#formSection button[type="submit"]:hover {
+  background-color: #e60000;
+}
+
+/* Scanner button styles */
+.mobile-only {
+  width: 100%;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+#startScanner {
+  background-color: red;
+  color: white;
+  font-weight: 700;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: background-color 0.3s ease;
+}
+
+#startScanner:hover {
+  background-color: #e60000;
+}
+
+/* Hide scanner section on desktop */
+@media (min-width: 768px) {
+  .mobile-only {
+    display: none;
+  }
+
+  /* Make form a two-column grid */
+  #formSection form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem 3rem;
+  }
+
+  /* Make the submit button span two columns and center */
+  #formSection button[type="submit"] {
+    grid-column: span 2;
+    width: auto;
+    justify-self: center;
+  }
+
+  /* Ensure labels and inputs fill their grid cells */
+  #formSection label {
+    width: 100%;
+  }
+
+  #formSection input,
+  #formSection select {
+    width: 100%;
+  }
+}

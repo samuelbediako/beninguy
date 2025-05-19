@@ -1,0 +1,144 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: red;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.splash-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.splash-card {
+  background: white;
+  padding: 2rem 3rem;
+  border-radius: 1rem;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.splash-title {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.language-picker {
+  position: relative;
+  user-select: none;
+}
+
+.dropdown-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #f9f9f9;
+}
+
+.dropdown-label img {
+  margin-right: 10px;
+  width: 20px;
+  height: 15px;
+}
+
+.dropdown-label span.arrow {
+  margin-left: auto;
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.dropdown-list {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-top: 0.5rem;
+  z-index: 1000;
+  display: none;
+  max-height: 250px;
+  overflow-y: auto;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.language-picker.open .dropdown-list {
+  display: block;
+}
+
+#languageSearch {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-bottom: 1px solid #eee;
+  outline: none;
+  font-size: 0.95rem;
+}
+
+#languageList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#languageList li {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background 0.2s;
+}
+
+#languageList li:hover {
+  background-color: #f0f0f0;
+}
+
+#languageList img {
+  margin-right: 10px;
+  width: 20px;
+  height: 15px;
+}
+
+.hidden {
+  display: none;
+}
+
+#continueBtn {
+    margin-top: 20px;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    background-color: red;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#continueBtn:hover:enabled {
+    background-color: darkred;
+    transform: translateY(-1px);
+}
+
+#continueBtn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    box-shadow: none;
+}
